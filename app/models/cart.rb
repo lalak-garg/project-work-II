@@ -5,5 +5,4 @@ class Cart < ApplicationRecord
   def self.total
     self.all.map{|c| (c.product.price*c.quantity)}.sum
   end
-
 end
