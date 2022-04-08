@@ -1,0 +1,33 @@
+<div class = "container">
+    <center><h1>Show Seller Details</h1>
+    <table class = "table table-hover table-borderless w-auto">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td><%= @seller.name %></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th>Email</th>
+                <td><%= @seller.user.email %></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th>Address</th>
+                <td><%= @seller.address %></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th>Status</th>
+                <td><%= @seller.status %></td>
+            </tr>
+        </tbody>
+    </table></center>
+    <div style = "margin: 20px auto; text-align: center">
+        <%= link_to 'Edit', edit_seller_path(@seller), class: "btn btn-success" %>
+        <%= link_to 'Back', root_path, class: "btn btn-warning" %>
+    </div>
+</div>

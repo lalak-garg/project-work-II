@@ -1,0 +1,9 @@
+<div class = "container">
+    <center><h1>Editing Seller</h1></center>
+    <%= render 'form' %>
+
+    <div style = "margin: 20px auto; text-align: center">
+        <%= link_to 'Show', @seller, class: "btn btn-success" %>
+        <%= link_to 'Back', seller_path(current_user.type_id), class: "btn btn-warning" %>
+    </div>
+</div>

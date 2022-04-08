@@ -1,0 +1,23 @@
+<div id = "navigation" class = "navbar navbar-default nav-fixed-top">
+    <div class = "container">
+        <div class = "navbar-header">
+            <%= link_to image_tag("logo.png"), root_path,  :title => "title text" , class: "navbar-brand" %>
+        </div>
+        <ul class = "nav navbar-nav">
+            <li><%= link_to "Home", root_path %></li>
+            <% unless user_signed_in? %>
+                <li><%= link_to("Customer Registration", new_customer_path) %></li>
+                <li><%= link_to("Seller Registration", new_seller_path) %></li>
+                <li><%= link_to("Login", new_user_session_path) %></li>
+            <% else %>
+                <% if current_user.type_id_type == "Customer" %>
+                    <li><%= link_to 'Customers', customer_path(current_user.type_id) %></li>
+                    <li><%= link_to "Cart #{current_payment.carts.size}", carts_path %></li>
+                <% else %>
+                    <li><%= link_to 'Sellers', seller_path(current_user.type_id) %></li>
+                <% end %>
+                <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-success" %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<style>
+    span{
+        color : red;
+    }
+</style>
+
+<%= form_for(@seller) do |f| %>
+
+    <div class = "row" style = "text-align: center;">
+        <div class = "col-lg-6">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+            <% @seller.errors.full_messages_for(:name).each do |message| %>
+                <span><%= message %></span><br>
+            <% end %>
+        </div>
+
+        <div class = "col-lg-6">
+            <%= f.label :Address %><br>
+            <%= f.text_area :address %>
+            <% @seller.errors.full_messages_for(:address).each do |message| %>
+                <span><%= message %></span>
+            <% end %>
+        </div>
+
+        <div class = "col-lg-6">
+            <%= f.label :Status %><br>
+            <%= f.radio_button :status, "open", class: "form-check-radio" %>
+            <%= f.label :status_open, "Open" %>
+            <%= f.radio_button :status, "close", class: "form-check-radio" %>
+            <%= f.label :status_close, "Close" %><br>
+            <% @seller.errors.full_messages_for(:status).each do |message| %>
+                <span><%= message %></span>
+            <% end %>
+        </div>
+
+        <%= f.fields_for :user do |u| %>
+            <div class = "col-lg-6">
+                <%= u.label :email %><br>
+                <%= u.text_field :email %>
+                <% @seller.user.errors.full_messages_for(:email).each do |message| %>
+                    <span><%= message %></span>
+                <% end %>
+            </div>
+
+            <div class = "col-lg-6">
+                <%= u.label :password %><br>
+                <%= u.password_field :password %>
+                <% @seller.user.errors.full_messages_for(:password).each do |message| %>
+                    <span><%= message %></span>
+                <% end %>
+            </div>
+
+            <div class = "col-lg-6">
+                <%= u.label :password_confirmation %><br>
+                <%= u.password_field :password_confirmation %>
+                <% @seller.user.errors.full_messages_for(:password_confirmation).each do |message| %>
+                    <span><%= message %></span>
+                <% end %>
+            </div>
+        <% end %>
+
+        <div class = "col-lg-12" style = "margin: 10px 0px; text-align: center;">
+            <%= f.submit "Submit", :class => "btn btn-info" %>
+        </div>
+    </div>
+<% end %>

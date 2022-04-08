@@ -1,0 +1,13 @@
+<div id = "intro">
+    <div class = "container">
+        <ul class="nav nav-pills nav-justified">
+            <% @seller.each do |seller| %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/home/<%= seller.id %>">
+                        <%= seller.name %>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
