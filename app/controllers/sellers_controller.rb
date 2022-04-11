@@ -4,7 +4,7 @@ class SellersController < ApplicationController
     end
 
     def show
-        @seller = current_user
+        @seller = current_user.type_id
     end
 
     def new
@@ -13,7 +13,7 @@ class SellersController < ApplicationController
     end
 
     def edit
-        @seller = current_seller
+        @seller = current_user.type_id
     end
 
     def create

@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def index
     @seller = Seller.all
-    
   end
 
   def show

@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
     end
 
     def show
-        @customer = current_user
+        @customer = current_user.type_id
     end
 
     def new
@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
     end
 
     def edit
-        @customer = current_customer
+        @customer = current_user.type_id
     end
 
     def create

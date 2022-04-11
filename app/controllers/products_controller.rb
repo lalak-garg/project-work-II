@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
     before_action :load_seller
     def index
-      @cart = current_payment.carts.new
 	    params[:category] = Category.first.name if params[:category].blank?
       @products = @seller.products.joins(:category).where("categories.name = ?", params[:category])
       @category = Category.all

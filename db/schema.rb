@@ -10,16 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_08_055253) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_08_130540) do
   create_table "carts", force: :cascade do |t|
-    t.integer "quantity"
-    t.integer "product_id", null: false
-    t.integer "payment_id", null: false
-    t.decimal "total"
+    t.integer "customer_id", null: false
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["payment_id"], name: "index_carts_on_payment_id"
-    t.index ["product_id"], name: "index_carts_on_product_id"
+    t.index ["customer_id"], name: "index_carts_on_customer_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -36,11 +33,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_08_055253) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", force: :cascade do |t|
-    t.decimal "subtotal"
-    t.decimal "total"
+  create_table "items", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.integer "cart_id"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "seller_id", null: false
+    t.float "price"
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -79,8 +90,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_08_055253) do
     t.index ["type_id_type", "type_id_id"], name: "index_users_on_type_id"
   end
 
-  add_foreign_key "carts", "payments"
-  add_foreign_key "carts", "products"
+  add_foreign_key "carts", "customers"
+  add_foreign_key "items", "products"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "sellers"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sellers"
 end
