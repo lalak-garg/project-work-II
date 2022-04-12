@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
     has_one :user, as: :type_id, dependent: :destroy
-    has_one :cart
+    has_many :carts
+    has_many :orders
     accepts_nested_attributes_for :user
 
     validates :name, :contact_no, :address, presence: true

@@ -12,7 +12,7 @@
             <% else %>
                 <% if current_user.type_id_type == "Customer" %>
                     <li><%= link_to 'Customers', customer_path(current_user.type_id) %></li>
-                    <li><%= link_to "Cart ()", carts_path %></li>
+                    <li><%= link_to "Cart (#{current_cart.items.count})", items_path %></li>
                 <% else %>
                     <li><%= link_to 'Sellers', seller_path(current_user.type_id) %></li>
                 <% end %>

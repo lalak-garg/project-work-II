@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seller: one
+  customer: one
+  score: 1.5
+
+two:
+  seller: two
+  customer: two
+  score: 1.5

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_08_130540) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_12_120820) do
   create_table "carts", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "status", default: "pending"
@@ -67,6 +67,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_08_130540) do
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "seller_id", null: false
+    t.integer "customer_id", null: false
+    t.float "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_ratings_on_customer_id"
+    t.index ["seller_id"], name: "index_ratings_on_seller_id"
+  end
+
   create_table "sellers", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -96,4 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_08_130540) do
   add_foreign_key "orders", "sellers"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sellers"
+  add_foreign_key "ratings", "customers"
+  add_foreign_key "ratings", "sellers"
 end

@@ -1,0 +1,44 @@
+<div id = "intro">
+    <div class = "container">
+        <center><h1>Order Details</h1>
+        <table class = "table table-hover table-borderless w-auto">
+            <tbody>
+                <tr>
+                    <th>Order Id</th>
+                    <td><%= @order.id %></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th>Status</th>
+                    <td><%= @order.status %></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th>Seller Name</th>
+                    <td><%= @order.seller.name %></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th colspan = "2">Items</th>
+                </tr>
+            </tbody>
+            <% @items.each do |item| %>
+                <tbody>
+                    <tr>
+                        <td><%= item.product.name %></td>
+                        <td><%= item.product.price %></td>
+                    </tr>
+                </tbody>
+            <% end %>
+            <tbody>
+                <tr>
+                    <th>Total Amount</th>
+                    <td><%= @order.price %></td>
+                </tr>
+            </tbody>
+        </table></center>
+    </div>
+</div>

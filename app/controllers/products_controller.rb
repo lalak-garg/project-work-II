@@ -34,18 +34,6 @@ class ProductsController < ApplicationController
     def destroy
     end
 
-    def add_to_cart
-      id = params[:id].to_i
-      session[:cart] << id unless session[:cart].include?(id)
-      redirect_to "/home/show"
-    end
-
-    def remove_from_cart
-      id = params[:id].to_i
-      session[:cart].delete(id)
-      redirect_to "/home/show"
-    end
-
     private
         def product_params
           params.require(:product).permit(:name, :category_id, :description, :price, :available)
