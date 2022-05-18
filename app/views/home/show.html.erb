@@ -21,41 +21,43 @@
                 <% end %>
             </ul>
         </div>
-        <div>
-            <h4><%= params[:category] %></h4>
-            <table class = "table table-borderless">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @products.each do |product| %>
+        <% if params[:category].present? %>
+            <div>
+                <h4><%= params[:category] %></h4>
+                <table class = "table table-borderless">
+                    <thead>
                         <tr>
-                            <% if product.description.present? %>
-                                <td><%= product.name %> (<%= product.description %>)</td>
-                            <% else %>
-                                <td><%= product.name %></td>
-                            <% end %>
-                            <td><%= product.price  %></td>
-                            <% if product.available? %>
-                                <td>
-                                    <%= form_for Item.new, url: items_path do |f| %>
-                                        <%= f.hidden_field :seller_id, :value => @seller.id %>
-                                        <%= f.hidden_field :product_id, :value => product.id %>
-                                        <%= f.number_field :quantity, :value => 1, :min => 1 %>
-                                        <%= f.submit "Add to Cart", class: "btn btn-primary"%>
-                                    <% end %>
-                                </td>
-                            <% else %>
-                                <td><h5><span class = "badge rounded-pill bg-danger">Not available</span></h5></td>
-                            <% end %>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th></th>
                         </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        <% @products.each do |product| %>
+                            <tr>
+                                <% if product.description.present? %>
+                                    <td><%= product.name %> (<%= product.description %>)</td>
+                                <% else %>
+                                    <td><%= product.name %></td>
+                                <% end %>
+                                <td><%= product.price  %></td>
+                                <% if product.available? %>
+                                    <td>
+                                        <%= form_for Item.new, url: items_path do |f| %>
+                                            <%= f.hidden_field :seller_id, :value => @seller.id %>
+                                            <%= f.hidden_field :product_id, :value => product.id %>
+                                            <%= f.number_field :quantity, :value => 1, :min => 1 %>
+                                            <%= f.submit "Add to Cart", class: "btn btn-primary"%>
+                                        <% end %>
+                                    </td>
+                                <% else %>
+                                    <td><h5><span class = "badge rounded-pill bg-danger">Not available</span></h5></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
     </div>
 </div>
