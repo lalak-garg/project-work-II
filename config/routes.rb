@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :sellers do
     resources :products
   end
+
+  get "/seller/:seller_id/show_pruducts", to: "products#show_products", as: "show_products"
 end

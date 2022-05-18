@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
       render "home/show"
     end
 
-    def show
+    def show_products
+      @category = Category.all
+      @products = @seller.products.all
     end
 
     def new
